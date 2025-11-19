@@ -21,7 +21,7 @@
    - `[feat] 프론트엔드 초기 세팅`
    - `[fix] 이메일 분석 오류 수정`
 5. 리뷰어(팀장) 승인 후 → dev로 merge
-6. dev → main merge는 팀장만 수행
+6. dev → main merge는 승인 후 수행
 
 ### PR(Pull Request) 작성 흐름
 1. `feat/*` 브랜치에서 작업 완료 후 push
