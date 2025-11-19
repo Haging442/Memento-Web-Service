@@ -30,11 +30,3 @@
 4. 변경 내용 요약 작성
 5. **Create Pull Request** 클릭
 6. 팀장이 리뷰 & merge
-
-### Commit 메시지 규칙 (선택)
-- `feat:` 새로운 기능
-- `fix:` 버그 수정
-- `docs:` 문서 수정
-- `style:` 코드 포맷, 세미콜론 등 스타일 변경
-- `refactor:` 코드 리팩토링
-- `chore:` 빌드/설정 관련
