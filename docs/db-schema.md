@@ -5,7 +5,7 @@
 
 ---
 
-## 1. users (사용자)
+## 1.1 Users (사용자)
 
 | 필드명           | 타입                      | 설명             |
 | ------------- | ----------------------- | -------------- |
@@ -15,3 +15,14 @@
 | name          | TEXT                    | 사용자 실명         |
 | role          | TEXT (‘USER’ / ‘ADMIN’) | 권한             |
 | created_at    | TEXT                    | 생성 시각          |
+
+## 1.2 Trusted Contacts (신뢰 연락처)
+| 필드명        | 타입                   | 설명             |
+| ---------- | -------------------- | -------------- |
+| id         | INTEGER PK           | 고유 ID          |
+| user_id    | INTEGER FK(users.id) | 해당 사용자의 신뢰 연락처 |
+| name       | TEXT                 | 이름             |
+| relation   | TEXT                 | 관계             |
+| email      | TEXT                 | 이메일            |
+| phone      | TEXT                 | 전화번호           |
+| created_at | TEXT                 | 등록 시각          |
