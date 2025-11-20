@@ -7,15 +7,6 @@
 
 ## 1. users (사용자)
 
-```sql
-CREATE TABLE users (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT UNIQUE NOT NULL,
-  password_hash TEXT NOT NULL,
-  name TEXT,
-  role TEXT NOT NULL DEFAULT 'USER',
-  created_at TEXT DEFAULT CURRENT_TIMESTAMP
-);
 | 필드명           | 타입                      | 설명             |
 | ------------- | ----------------------- | -------------- |
 | id            | INTEGER PK              | 고유 ID          |
