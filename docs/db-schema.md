@@ -5,7 +5,7 @@
 
 ---
 
-## 1.1 Users (사용자)
+## 1. Users (사용자)
 사용자 로그인, 역할 구분, 기본 정보 저장을 위한 테이블.
 
 | 필드명           | 타입           | 설명            |
@@ -21,10 +21,9 @@
 - USER: 일반 사용자
 - ADMIN: 사망 신고 관리 및 시스템 모니터링
 
----
-
-## 1.2 Trusted Contacts (신뢰 연락처)
+## 2. Trusted Contacts (신뢰 연락처)
 생전 등록하는 “사망 확인자(Trusted Contact)” 정보를 관리.
+
 | 필드명        | 타입           | 설명                     |
 | ---------- | ------------ | ---------------------- |
 | id         | INTEGER (PK) | 고유 ID                  |
@@ -40,8 +39,9 @@
 - 사망확정 프로세스에 필요
 
 
-## 1.3 Digital Assets (디지털 자산)
+## 3. Digital Assets (디지털 자산)
 생전 등록되는 디지털 계정/구독/서비스 목록 관리 테이블.
+
 | 필드명          | 타입           | 설명                     |
 | ------------ | ------------ | ---------------------- |
 | id           | INTEGER (PK) | 자산 고유 ID               |
@@ -59,5 +59,89 @@
 - 사후 지시 연결 가능
 
 
-## 1.4 Death Reports (사망 의심 신고)
+## 4. Death Reports (사망 의심 신고)
 외부 또는 지인이 제출하는 사망 의심 신고를 저장.
+| 필드명              | 타입           | 설명                                        |
+| ---------------- | ------------ | ----------------------------------------- |
+| id               | INTEGER (PK) | 신고 ID                                     |
+| target_user_id   | INTEGER      | 신고 대상(USER)                               |
+| reporter_name    | TEXT         | 신고자 이름                                    |
+| reporter_contact | TEXT         | 전화/이메일                                    |
+| relation         | TEXT         | 사용자와의 관계                                  |
+| message          | TEXT         | 신고 내용                                     |
+| status           | TEXT         | PENDING / CONFIRMED / REJECTED / CANCELED |
+| admin_note       | TEXT         | 관리자 메모                                    |
+| created_at       | TEXT         | 신고 시각                                     |
+| resolved_at      | TEXT         | 처리 시각                                     |
+
+용도
+- 관리자 대시보드에서 상태 변경
+- ‘72시간 대기 → 사망 확정’ 로직의 근거
+
+## 1.5 Asset Instructions (디지털 자산 사후 처리 지시서)
+⚠️ 현재 DB에 없음 → 신규 추가 필요
+AI 챗봇이 생성하는 “디지털 자산 사후 처리 전략” 저장.
+
+| 필드명               | 타입           | 설명                              |
+| ----------------- | ------------ | ------------------------------- |
+| id                | INTEGER (PK) | 지시서 ID                          |
+| user_id           | INTEGER      | 지시서 작성자                         |
+| asset_id          | INTEGER      | 연결된 디지털 자산                      |
+| action            | TEXT         | DELETE / TRANSFER / MEMORIALIZE |
+| beneficiary_name  | TEXT         | 상속인 이름                          |
+| beneficiary_email | TEXT         | 상속인 이메일                         |
+| note              | TEXT         | 추가 설정                           |
+| created_at        | TEXT         | 작성 시각                           |
+
+용도
+- “Instagram → 추모 계정 전환”
+- “Naver Cloud → 가족 이메일로 공유”
+- “넷플릭스 → 자동 해지 요청 이메일 생성”
+- 이런 규칙을 저장하기 위한 테이블.
+
+## 1.6 Time Capsules (디지털 타임캡슐)
+⚠️ DB에 없음 → 신규 추가 필요
+사진/영상/문서/텍스트를 암호화 저장하고, 사후 공개 조건을 설정하는 기능 기반.
+
+| 필드명               | 타입           | 설명                             |
+| ----------------- | ------------ | ------------------------------ |
+| id                | INTEGER (PK) | 타임캡슐 ID                        |
+| user_id           | INTEGER      | 생성한 사용자                        |
+| title             | TEXT         | 제목                             |
+| content_text      | TEXT         | 텍스트 편지                         |
+| file_url          | TEXT         | 파일 저장 경로                       |
+| encrypt_key       | TEXT         | 암호화 키                          |
+| release_type      | TEXT         | IMMEDIATE / DATE / BENEFICIARY |
+| release_date      | TEXT         | 특정 날짜 공개                       |
+| beneficiary_email | TEXT         | 특정 상속인에게만 공개                   |
+| created_at        | TEXT         | 생성 시각                          |
+
+용도
+- 사후 특정 날짜 공개
+- 특정 상속인에게만 공개
+- 여러 개의 타임캡슐 생성
+
+## 1.7 Will Documents (자필 유언장 정보)
+⚠️ DB에 없음 → 신규 추가 필요
+사용자가 직접 작성한 자필 유언장의 사진 파일 + 보관 장소(암호화)를 저장.
+
+| 필드명              | 타입           | 설명                |
+| ---------------- | ------------ | ----------------- |
+| id               | INTEGER (PK) | 유언장 ID            |
+| user_id          | INTEGER      | 작성자               |
+| file_url         | TEXT         | 업로드된 이미지/파일       |
+| storage_location | TEXT         | 실물 보관 장소 (암호화 저장) |
+| created_at       | TEXT         | 등록 시각             |
+
+용도
+- 사망 확정 후 상속인에게 자동 전송
+- “원본 위치”를 안내하는 기능
+
+## 1.8 관계 요약 (ERD 개념)
+- users (1) — (N) digital_assets
+- users (1) — (N) trusted_contacts
+- users (1) — (N) death_reports (target)
+- users (1) — (N) asset_instructions
+- digital_assets (1) — (N) asset_instructions
+- users (1) — (N) time_capsules
+- users (1) — (N) will_documents
