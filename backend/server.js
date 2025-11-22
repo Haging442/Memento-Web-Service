@@ -1,6 +1,7 @@
 // server.js
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const db = require('./db');
 const users = require('./src/routes/users');
 const assets = require('./src/routes/assets');
@@ -12,6 +13,7 @@ const timeCapsules = require('./src/routes/timeCapsules');
 
 dotenv.config();
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 const port = process.env.PORT || 4000;
@@ -288,7 +290,7 @@ function autoReleaseTimeCapsules() {
 
 // 10분마다 확인 (테스트용으로 5초 가능)
 const AUTO_RELEASE_ON_DATE_INTERVAL_MS = 10 * 60 * 1000;
-// const AUTO_RELEASE_ON_DATE_INTERVAL_MS = 5000; // 테스트용
+// const AUTO_RELEASE_ON_DATE_INTERVAL_MS = 5000;  // 테스트용
 
 function autoReleaseTimeCapsulesOnDate() {
   console.log('[AUTO RELEASE ON_DATE] Checking scheduled capsules...');
