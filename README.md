@@ -112,3 +112,5 @@ backend/server.js              ← 새 라우터 및 미들웨어 등록
 2. **사망 신고**: `http://localhost:4000/death-verification/report`
 3. **관리자**: `http://localhost:4000/death-verification/admin`
 
+## **오류 날 경우 시도**
+- 패키지 설치: npm install multer nodemailer express-session
