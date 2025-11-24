@@ -8,6 +8,10 @@
 - 사망 확인 시스템
 - 사망 알림 시스템
 
+## **패키지 설치**
+- 파일 업로드 처리, 이메일 보내기, 로그인 상태 유지: npm install multer nodemailer express-session
+- PDF → 이미지 변환, 이미지 → 텍스트 추출(OCR): npm install tesseract.js pdf-poppler
+
 ## **추가된 폴더 목록**
 
 ### **새로 생성된 폴더**
@@ -111,6 +115,3 @@ backend/server.js              ← 새 라우터 및 미들웨어 등록
 1. **신뢰 연락처**: `http://localhost:4000/trusted-contacts`
 2. **사망 신고**: `http://localhost:4000/death-verification/report`
 3. **관리자**: `http://localhost:4000/death-verification/admin`
-
-## **오류 날 경우 시도**
-- 패키지 설치: npm install multer nodemailer express-session
