@@ -39,7 +39,6 @@ backend/views/
 ### **4. 수정된 파일 (2개)**
 ```
 backend/server.js              ← 새 라우터 및 미들웨어 등록
-backend/package.json           ← multer, nodemailer, express-session 패키지 추가
 ```
 
 ## **새로 추가된 경로**
@@ -61,17 +60,6 @@ backend/package.json           ← multer, nodemailer, express-session 패키지
 - `GET /death-notification` - 사망 알림 페이지 (72시간 카운트다운)
 - `POST /death-notification/cancel` - 사망 신고 취소 (오탐지)
 
-## **새로 설치된 npm 패키지**
-
-```json
-{
-  "dependencies": {
-    "multer": "^1.4.5-lts.1",        // 파일 업로드 (사망확인서 PDF)
-    "nodemailer": "^6.9.7",          // 이메일 발송 (확인 링크)
-    "express-session": "^1.17.3"     // 세션 관리
-  }
-}
-```
 
 ## **데이터베이스 변경사항**
 **데이터베이스 스키마 변경 없음**
