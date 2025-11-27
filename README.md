@@ -1,6 +1,6 @@
 # Memento Web Service    
 
-**실행 방법
+실행 방법
 
 - 터미널 (1)   
 cd "Memento-Web-Service-main\backend"  
