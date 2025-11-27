@@ -1,21 +1,22 @@
 # Memento Web Service    
 
-1. 실행 방법  
-터미널 (1)   
+**실행 방법
+
+- 터미널 (1)   
 cd "Memento-Web-Service-main\backend"  
 npm run dev   
 
     
-터미널 (2)  
+- 터미널 (2)  
 cd "Memento-Web-Service-main\frontend"  
 npm run dev   
 
     
-주소 입력  
+- 주소 입력  
 http://localhost:5173/  
-
+-------------------------
     
-2. 기본 정보  
+- 기본 정보  
 관리자 계정 ID : admin   
 관리자 계정 비밀번호 : 1111  
 
