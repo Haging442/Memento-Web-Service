@@ -9,11 +9,10 @@ AI 라이프 솔루션 챌린지 2025 – “메멘토” 웹 서비스 개발 �
 ---
 
 ## 초기 세팅 가이드
-
-- VS Code 확장 기능 설치:
-  - **Thunder Client** → API 테스트 (로그인 테스트 등)
-  - **SQLite Viewer** → SQLite DB 구조 및 데이터 GUI로 확인
 - **Node.js 설치 필수**
+- VS Code 확장 기능 설치:
+  - Thunder Client → API 테스트 (로그인 테스트 등)
+  - SQLite Viewer → SQLite DB 구조 및 데이터 GUI로 확인
 
 ---
 
